@@ -3,282 +3,241 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>to be felt · bunga & hati</title>
+  <title>To Be Felt · pink love background</title>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      background: #1a0c0f;  /* warm dark fallback */
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow-x: hidden;
-      position: relative;
+      color: #fff;
+      background: #ffd0dd; /* fallback pink lembut */
     }
 
-    /* ---------- bunga background (modern, soft, love) ---------- */
-    .flower-backdrop {
+    /* LOVE PINK BACKGROUND — modern, gradien, love pattern */
+    .love-pink-bg {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
+      background: radial-gradient(circle at 20% 30%, #ffe4ec, #ffb6c1 60%, #faa0b5);
+      overflow: hidden;
       pointer-events: none;
-      background: radial-gradient(circle at 30% 40%, #ffd9d9 0%, #fbe9f0 40%, #f4dae5 100%);
-      opacity: 0.95;
     }
 
-    /* bunga digambar dengan gradien & pseudo-elements — modern, tidak pakai gambar eksternal */
-    .flower-backdrop::before,
-    .flower-backdrop::after {
-      content: '';
+    /* lapisan love (simbol) mengambang */
+    .love-pink-bg::before {
+      content: "❤️";
+      position: absolute;
+      font-size: 15vw;
+      bottom: -5vh;
+      right: -5vw;
+      opacity: 0.15;
+      color: #ff90a5;
+      transform: rotate(10deg);
+      filter: drop-shadow(0 0 25px #ffb0c0);
+      animation: floatLove 14s infinite alternate ease-in-out;
+    }
+
+    .love-pink-bg::after {
+      content: "🌸💕🌷";
+      position: absolute;
+      font-size: 8vw;
+      top: 2vh;
+      left: 2vw;
+      opacity: 0.2;
+      color: #ffa5b9;
+      transform: rotate(-8deg);
+      animation: floatLove 18s infinite alternate-reverse;
+      white-space: nowrap;
+    }
+
+    /* banyak love kecil dari pseudo tambahan dengan shadow */
+    .love-pink-bg .love-particle {
+      display: none; /* kita pakai box-shadow love di elemen terpisah */
+    }
+
+    /* kita tambahkan love berserakan dengan box-shadow di elemen buatan */
+    .love-pink-bg .love-shower {
       position: absolute;
       width: 100%;
       height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M50 30 Q60 10 75 15 Q85 25 70 40 Q90 40 88 58 Q75 70 60 60 Q60 80 45 85 Q28 80 30 58 Q15 52 22 38 Q30 20 48 30 Q47 15 50 30Z" fill="%23ff9ebb"/><circle cx="50" cy="48" r="8" fill="%23ff6f91"/><path d="M32 45 Q28 60 40 70 Q45 78 58 70 Q68 68 65 52 Q72 40 58 32 Q45 22 32 45Z" fill="%23ffb3c6" opacity="0.7"/></svg>');
+      background: transparent;
+      background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><text x="10" y="35" font-size="40" fill="%23ffa0b5" opacity="0.25">❤️</text><text x="30" y="20" font-size="30" fill="%23ffb6c9" opacity="0.2">🌸</text><text x="2" y="55" font-size="28" fill="%23ff8da1" opacity="0.2">💖</text></svg>');
       background-repeat: repeat;
-      background-size: 140px 140px;
+      background-size: 120px 120px;
+      opacity: 0.8;
       mix-blend-mode: overlay;
     }
 
-    .flower-backdrop::after {
-      background-image: url('data:image/svg+xml;utf8,<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" opacity="0.15"><path d="M60 25 Q80 10 98 22 Q108 40 92 58 Q112 65 100 85 Q80 100 62 82 Q52 105 32 98 Q15 80 30 60 Q10 45 28 25 Q45 8 60 25Z" fill="%23ffb7c5"/><circle cx="58" cy="55" r="12" fill="%23fd8eac"/></svg>');
-      background-size: 180px 180px;
-      mix-blend-mode: soft-light;
+    @keyframes floatLove {
+      0% { transform: translateY(0px) rotate(0deg) scale(1); }
+      100% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
     }
 
-    /* container utama — seperti card mengambang */
-    .landing {
+    /* container utama di atas background */
+    .container {
       position: relative;
       z-index: 10;
-      width: 90%;
-      max-width: 1000px;
-      margin: 2rem auto;
-      border-radius: 3rem 3rem 2rem 2rem;
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3) inset, 0 0 0 4px rgba(255, 210, 230, 0.4);
-      backdrop-filter: blur(2px);
-      background: rgba(20, 10, 15, 0.2); /* transparan tipis biar bunga kebaca */
-      padding: 1.2rem;
+      width: 100%;
+      height: 100%;
     }
 
-    /* slideshoe modern dengan efek bunga + love */
-    .slideshow-card {
-      position: relative;
+    /* SLIDESHOW */
+    .slideshow {
+      position: absolute;
       width: 100%;
-      border-radius: 2.5rem 2.5rem 1.8rem 1.8rem;
+      height: 100%;
       overflow: hidden;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
-      border: 2px solid rgba(255, 200, 220, 0.7);
-    }
-
-    .slideshow-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #3a1e26;
     }
 
     .slide {
       position: absolute;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       opacity: 0;
-      transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      border-radius: 2.5rem 2.5rem 0 0;
+      transition: opacity 1.5s ease;
     }
 
     .slide.active {
       opacity: 1;
     }
 
-    /* overlay lebih modern, transparan dengan glassmorphism */
-    .text-overlay {
+    /* OVERLAY — dengan sentuhan pink transparan */
+    .overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      background: linear-gradient(to top, rgba(25, 5, 15, 0.85), rgba(255, 220, 240, 0.2) 90%);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border-top: 1px solid rgba(255, 245, 250, 0.5);
-      border-radius: 0 0 2.5rem 2.5rem;
-      padding: 2rem 1.5rem;
-      color: white;
-      text-shadow: 0 2px 6px #33001a;
+      height: 100%;
+      background: rgba(255, 190, 200, 0.2); /* pink transparan */
+      backdrop-filter: blur(2px) brightness(1.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
     }
 
-    .text-card {
-      max-width: 750px;
-      margin: 0 auto;
-      text-align: center;
+    .card {
+      max-width: 700px;
+      padding: 30px 40px;
+      animation: fadeIn 2s ease;
+      background: rgba(255, 240, 245, 0.2);
+      border-radius: 70px 70px 40px 40px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 220, 240, 0.6);
+      box-shadow: 0 20px 40px rgba(200, 100, 130, 0.3), 0 0 0 3px rgba(255, 200, 220, 0.3) inset;
     }
 
     h1 {
-      font-size: 2.8rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(130deg, #fff2f5, #ffe3ed);
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ffdae5, #fff0f5);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      display: inline-block;
-      padding: 0 1rem 0.5rem;
-      border-bottom: 3px solid rgba(255, 160, 190, 0.8);
-      border-radius: 0 0 20px 20px;
-      text-shadow: 0 0 10px rgba(255, 128, 128, 0.5);
+      text-shadow: 0 0 20px #ffa5b9;
     }
 
     #text {
-      font-size: 1.4rem;
-      line-height: 1.7;
-      min-height: 140px;
-      font-weight: 300;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      min-height: 150px;
+      transition: opacity 1s ease;
       color: #fff5f7;
-      transition: opacity 0.8s ease;
-      background: rgba(10, 3, 8, 0.25);
-      backdrop-filter: blur(6px);
-      padding: 1.2rem 1.8rem;
-      border-radius: 60px 60px 30px 30px;
-      margin-top: 0.8rem;
-      border: 1px solid rgba(255, 220, 240, 0.5);
-      box-shadow: inset 0 0 20px rgba(255, 180, 200, 0.3);
-      word-break: break-word;
+      font-weight: 300;
+      text-shadow: 0 2px 6px #b2445e;
     }
 
-    /* detil love (heart) di pojok */
-    .floating-love {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      z-index: 30;
-      font-size: 2.4rem;
-      filter: drop-shadow(0 0 6px #ffb6d9);
-      animation: gentleFloat 4s infinite ease-in-out;
-      pointer-events: none;
-    }
-
-    .floating-love.left {
-      left: 25px;
-      right: auto;
-      animation-delay: 0.7s;
-      transform: scale(0.9);
-    }
-
-    @keyframes gentleFloat {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(6deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    /* heartbeat untuk card */
+    /* HEARTBEAT */
     .heartbeat {
-      animation: loveBeat 0.6s cubic-bezier(0.45, 1.3, 0.6, 1);
+      animation: beat 0.6s ease;
     }
 
-    @keyframes loveBeat {
+    @keyframes beat {
       0% { transform: scale(1); }
-      25% { transform: scale(1.03); background: rgba(255, 240, 245, 0.2); }
-      50% { transform: scale(0.98); }
-      75% { transform: scale(1.02); }
+      30% { transform: scale(1.03); background-color: rgba(255, 200, 220, 0.3); }
+      60% { transform: scale(0.98); }
       100% { transform: scale(1); }
     }
 
-    /* foto dummy / placeholder — karena kita pakai gambar imajiner, tapi biar elegan pakai unsplash / gradien.
-       Tapi di sini saya akan buat foto2 dengan pesan ilustratif + love, tapi tetap bisa diganti file nanti.
-       Untuk keperluan demo, kita gunakan background gradient yg indah bertema mawar.
-    */
-
-    /* karena tidak ada file foto1.jpg dll, kita ganti dengan div berisi background elegan + emoji love biar modern.
-       TAPI tetap beri opsi gambar. Untuk demo kita pakai style background alami yg bisa diisi foto nanti.
-    */
-    .slide {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* slide dummy modern dengan tema love & bunga (tanpa file gambar) */
-    .slide:nth-child(1) {
-      background-image: radial-gradient(circle at 30% 40%, #ff9eb5, #b3476b);
-    }
-    .slide:nth-child(2) {
-      background-image: repeating-linear-gradient(45deg, #ffc2d9 0px, #ffc2d9 15px, #faaac7 15px, #faaac7 30px);
-    }
-    .slide:nth-child(3) {
-      background: linear-gradient(135deg, #f9b2c7, #cb6e8e), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="M20 10 Q25 2 33 8 Q37 16 27 22 Q37 28 30 36 Q20 38 15 28 Q6 34 6 22 Q0 12 10 8 Q15 2 20 10Z" fill="%23fffcfa" opacity="0.3"/></svg>');
-      background-blend-mode: overlay;
-    }
-    .slide:nth-child(4) {
-      background: radial-gradient(circle at 70% 20%, #ffd0dd, #9f576f);
-    }
-
-    /* kita tambahkan ikon love di setiap slide biar makin bunga */
-    .slide::after {
-      content: "❤️ 🌸";
+    /* tambahan love ikon kecil di pojok */
+    .corner-love {
       position: absolute;
       bottom: 20px;
-      left: 30px;
-      font-size: 2rem;
-      opacity: 0.6;
-      color: #ffeef2;
-      text-shadow: 0 0 15px hotpink;
-      pointer-events: none;
-      z-index: 5;
+      left: 20px;
+      z-index: 30;
+      font-size: 2.5rem;
+      opacity: 0.5;
+      filter: drop-shadow(0 0 10px hotpink);
+      animation: wobble 6s infinite;
     }
 
-    /* versi lebih modern: saat aktif love lebih terang */
-    .slide.active::after {
-      opacity: 1;
-      transform: scale(1.1);
-      transition: 0.3s;
+    .corner-love.right {
+      left: auto;
+      right: 20px;
+      animation-delay: 1s;
     }
 
-    /* tambahan bunga jatuh (tiny) dengan pseudo */
-    .flower-backdrop .petal {
-      display: none; /* biar nggak numpang, kita pakai yang di atas */
+    @keyframes wobble {
+      0%,100%{ transform: rotate(0deg); }
+      25%{ transform: rotate(10deg); }
+      75%{ transform: rotate(-10deg); }
     }
 
-    /* responsif */
-    @media (max-width: 700px) {
-      h1 { font-size: 2.2rem; }
-      #text { font-size: 1.1rem; padding: 1rem; }
-      .floating-love { font-size: 1.8rem; }
+    /* fallback untuk foto — jika foto1.jpg dll tidak ada, tampilkan pesan */
+    .slide {
+      background-color: #ffb7c5; /* warna dasar pink */
+      background-size: cover;
+      background-position: center;
     }
+
+    /* supaya lebih menarik, kita bisa ganti dengan background pink kalau gambar asli tidak ada */
+    /* tapi tetap prioritaskan gambar */
   </style>
 </head>
 <body>
-  <div class="flower-backdrop"></div>
 
-  <div class="landing">
-    <div class="slideshow-card">
-      <!-- floating love di sekitar -->
-      <div class="floating-love left">🌸❤️</div>
-      <div class="floating-love">💖🌹</div>
+  <!-- LOVE PINK BACKGROUND UTAMA (full love) -->
+  <div class="love-pink-bg">
+    <div class="love-shower"></div> <!-- partikel love dari svg pattern -->
+  </div>
 
-      <div class="slideshow-container">
-        <!-- slide gambar: nanti bisa ganti dengan foto asli (jpg) dengan menjaga class -->
-        <div class="slide active" style="background-image: url('foto1.jpg');"></div>
-        <div class="slide" style="background-image: url('foto2.jpg');"></div>
-        <div class="slide" style="background-image: url('foto3.jpg');"></div>
-        <div class="slide" style="background-image: url('foto4.jpg');"></div>
-        <!-- fallback: jika file tidak ada, background tetap tampil cantik via class -->
-      </div>
+  <!-- elemen love tambahan -->
+  <div class="corner-love">🌸</div>
+  <div class="corner-love right">💖</div>
 
-      <!-- overlay teks -->
-      <div class="text-overlay">
-        <div class="text-card">
-          <h1>🌼 just stay 🌼</h1>
-          <div id="text"></div>
-        </div>
+  <div class="container">
+    <!-- SLIDESHOW (gambar) -->
+    <div class="slideshow">
+      <img src="foto1.jpg" class="slide active" alt="love moment 1" onerror="this.style.backgroundColor='#ffb7c5'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffc0cb%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>❤️ foto1</text></svg>'">
+      <img src="foto2.jpg" class="slide" alt="love moment 2" onerror="this.style.backgroundColor='#ffa5b9'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffa5b9%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>🌸 foto2</text></svg>'">
+      <img src="foto3.jpg" class="slide" alt="love moment 3" onerror="this.style.backgroundColor='#ffb2c0'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffb2c0%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>💕 foto3</text></svg>'">
+      <img src="foto4.jpg" class="slide" alt="love moment 4" onerror="this.style.backgroundColor='#ff9eb5'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ff9eb5%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>🌷 foto4</text></svg>'">
+    </div>
+
+    <!-- OVERLAY TEXT -->
+    <div class="overlay">
+      <div class="card">
+        <h1>Just Stay · 🩷</h1>
+        <div id="text"></div>
       </div>
     </div>
   </div>
@@ -287,120 +246,70 @@
     (function() {
       const slides = document.querySelectorAll(".slide");
       const textEl = document.getElementById("text");
-      const card = document.querySelector(".text-card"); // kita pakai text-card untuk heartbeat
+      const card = document.querySelector(".card");
 
       const loveTexts = [
-        `Halaman ini tidak untuk di‑scroll.<br>` +
-        `Ia ingin dirasakan,<br>` +
-        `seperti bunga yang mekar diam‑diam.`,
+        `Halaman ini bukan untuk di‑scroll.<br>` +
+        `Ia untuk dirasakan,<br>` +
+        `seperti debaran pink di hati.`,
 
-        `Beberapa momen<br>` +
-        `tak perlu penjelasan.<br>` +
-        `Cukup hadir, dan hangat.`,
+        `Some moments<br>` +
+        `don’t need explanations.<br>` +
+        `They just need presence.`,
 
-        `Di dekatmu,<br>` +
-        `semesta melambat,<br>` +
-        `warna menjadi lembut,<br>` +
-        `dan hatiku ikut berbunga. 💐`,
+        `With you,<br>` +
+        `everything feels quieter,<br>` +
+        `softer,<br>` +
+        `real.`,
 
-        `Seandainya cinta punya alamat,<br>` +
-        `pasti ia tampak seperti ini.<br><br>` +
-        `Dan aku akan tinggal di sini.<br>` +
-        `Denganmu. ❤️🌸`
+        `If love had a place,<br>` +
+        `maybe it would look like this.<br><br>` +
+        `And I would stay here.<br>` +
+        `With you. ❤️🌸`
       ];
 
       let currentSlide = 0;
 
-      // fungsi mengetik dengan efek bunga (lebih smooth)
-      function typeLove(element, fullText, speed = 30) {
+      // typeText dengan lebih smooth
+      function typeText(element, fullText, speed = 35) {
         element.innerHTML = "";
         element.style.opacity = 1;
         let i = 0;
-        // hilangkan tag <br> agar tidak rusak — kita gunakan innerHTML
-        // teks sudah mengandung <br>, jadi aman.
-        const timer = setInterval(() => {
+        const typing = setInterval(() => {
           if (i < fullText.length) {
-            // gunakan innerHTML agar <br> langsung render, tapi kita harus menambah per karakter dengan hati2.
-            // Cara simpel: potong per karakter untuk efek, tetap parse sebagai html. Aman asal string biasa.
-            // supaya <br> tidak muncul sebagai teks, kita gunakan method: text biasa sampai ketemu <br>
-            // lebih mudah: gunakan pendekatan slicing biasa, karena innerHTML akan menginterpretasikan tag.
-            // resiko: jika memotong di tengah tag <br>? pakai cara aman:
-            // kita tambah per karakter, jika substring mengandung <br> belum lengkap tidak masalah, tetap sebagai teks belum jadi break.
-            // tapi ketika lengkap "<br>" akan muncul sebagai break. jadi OK.
+            // menggunakan substring agar <br> langsung di-render dengan benar
             element.innerHTML = fullText.substring(0, i + 1);
             i++;
           } else {
-            clearInterval(timer);
+            clearInterval(typing);
           }
         }, speed);
       }
 
-      function startRomanceSlideshow() {
-        // tulis pertama
-        typeLove(textEl, loveTexts[0]);
+      function startSlideshow() {
+        typeText(textEl, loveTexts[0]);
 
-        // ganti slide tiap 5 detik
         setInterval(() => {
-          // fade out slide sebelumnya
           slides[currentSlide].classList.remove("active");
-
-          // hitung slide berikutnya
           currentSlide = (currentSlide + 1) % slides.length;
           slides[currentSlide].classList.add("active");
 
-          // fade out teks dulu
-          textEl.style.opacity = 0;
+          textEl.style.opacity = 0; // fade out teks
 
           setTimeout(() => {
-            // ganti teks dengan yang baru
-            typeLove(textEl, loveTexts[currentSlide]);
-
-            // kasih efek heartbeat ke card overlay (pakai text-card)
+            typeText(textEl, loveTexts[currentSlide]);
             card.classList.add("heartbeat");
-            setTimeout(() => card.classList.remove("heartbeat"), 700);
+            setTimeout(() => card.classList.remove("heartbeat"), 600);
+          }, 1000); // tunggu transisi slide
 
-            // efek juga ke bunga latar? ringan
-          }, 950); // wait fade slide + opacity
-
-        }, 5500); // total tampilan tiap slide
+        }, 5500); // ganti setiap 5.5 detik
       }
 
-      // pastikan jika foto asli tidak ada, background fallback tetap kelihatan bagus
-      // sekaligus kita bisa tambahkan dummy unsplash atau biarkan gradient.
-      // untuk lebih real, tambahkan event agar foto dimuat.
-      window.addEventListener('load', function() {
-        // jika gambar tidak ada, biarkan gradient.
-        const imgs = document.querySelectorAll('.slide');
-        imgs.forEach((img, idx) => {
-          // cek background image url mungkin error? tidak bisa, tapi karena kita pakai div, bukan tag img, jadi selalu tampil.
-          // namun untuk mengganti dengan foto asli, user tinggal mengganti style background-image di masing2 slide.
-          // kita juga bisa tambahkan style bawaan foto background dari unsplash/cat sebagai contoh? biar modern kita embed.
-          // kita set foto dummy love dari placekitten? lebih baik gradient saja karena lebih estetik.
-          // tetapi karena user minta "foto masukan ke landing page" saya pastikan ada 4 foto dengan gaya.
-          // sekalian kita set foto random dari unsplash collection ? biar cepat: gunakan unsplash embed yg relevan.
-          // agar lebih modern saya set foto dengan akses gambar publik (bunga asli) dari unsplash.
-          // namun ini hanya contoh, bisa diganti file lokal.
-          // untuk demo agar terlihat nyata, kita sisipkan gambar dari pexels/unsplash (small credit)
-          // karena tidak mungkin upload foto, saya set dengan gambar cdn love themed.
-          const unsplashImages = [
-            'https://images.pexels.com/photos/931149/pexels-photo-931149.jpeg?auto=compress&cs=tinysrgb&w=600', // roses
-            'https://images.pexels.com/photos/1527415/pexels-photo-1527415.jpeg?auto=compress&cs=tinysrgb&w=600', // tulip
-            'https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg?auto=compress&cs=tinysrgb&w=600', // red rose
-            'https://images.pexels.com/photos/1071383/pexels-photo-1071383.jpeg?auto=compress&cs=tinysrgb&w=600' // peony
-          ];
-          // terapkan ke elemen slide sesuai urutan
-          if (idx < unsplashImages.length) {
-            img.style.backgroundImage = `url('${unsplashImages[idx]}')`;
-          }
-        });
-      });
+      startSlideshow();
 
-      startRomanceSlideshow();
+      // opsi: jika ingin foto asli tetap bisa diisi, kita tidak menghapus src. 
+      // onerror sudah menyediakan fallback pink + teks.
     })();
   </script>
-
-  <!-- tambahan sedikit love ekstra di background (floating tiny) -->
-  <div style="position: fixed; bottom: 10px; left: 10px; opacity:0.3; z-index: 20; font-size: 2rem;">🌸🌺🌸</div>
-  <div style="position: fixed; top: 15px; left: 15px; opacity:0.25; z-index: 20; font-size: 2.5rem; transform:rotate(-10deg);">🌷💕</div>
 </body>
 </html>
