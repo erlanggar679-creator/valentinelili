@@ -1,315 +1,111 @@
-      <!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="en">
+<button onclick="playLove()">
+  Click Me 🤍
+</button>
 <head>
   <meta charset="UTF-8">
+  <title>For Andini Kiandika Suci ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Be Felt · pink love background</title>
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
-    }
-
     body {
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    <audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       color: #fff;
-      background: #ffd0dd; /* fallback pink lembut */
-    }
-
-    /* LOVE PINK BACKGROUND — modern, gradien, love pattern */
-    .love-pink-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background: radial-gradient(circle at 20% 30%, #ffe4ec, #ffb6c1 60%, #faa0b5);
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    /* lapisan love (simbol) mengambang */
-    .love-pink-bg::before {
-      content: "❤️";
-      position: absolute;
-      font-size: 15vw;
-      bottom: -5vh;
-      right: -5vw;
-      opacity: 0.15;
-      color: #ff90a5;
-      transform: rotate(10deg);
-      filter: drop-shadow(0 0 25px #ffb0c0);
-      animation: floatLove 14s infinite alternate ease-in-out;
-    }
-
-    .love-pink-bg::after {
-      content: "🌸💕🌷";
-      position: absolute;
-      font-size: 8vw;
-      top: 2vh;
-      left: 2vw;
-      opacity: 0.2;
-      color: #ffa5b9;
-      transform: rotate(-8deg);
-      animation: floatLove 18s infinite alternate-reverse;
-      white-space: nowrap;
-    }
-
-    /* banyak love kecil dari pseudo tambahan dengan shadow */
-    .love-pink-bg .love-particle {
-      display: none; /* kita pakai box-shadow love di elemen terpisah */
-    }
-
-    /* kita tambahkan love berserakan dengan box-shadow di elemen buatan */
-    .love-pink-bg .love-shower {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><text x="10" y="35" font-size="40" fill="%23ffa0b5" opacity="0.25">❤️</text><text x="30" y="20" font-size="30" fill="%23ffb6c9" opacity="0.2">🌸</text><text x="2" y="55" font-size="28" fill="%23ff8da1" opacity="0.2">💖</text></svg>');
-      background-repeat: repeat;
-      background-size: 120px 120px;
-      opacity: 0.8;
-      mix-blend-mode: overlay;
-    }
-
-    @keyframes floatLove {
-      0% { transform: translateY(0px) rotate(0deg) scale(1); }
-      100% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
-    }
-
-    /* container utama di atas background */
-    .container {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* SLIDESHOW */
-    .slideshow {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    /* OVERLAY — dengan sentuhan pink transparan */
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 190, 200, 0.2); /* pink transparan */
-      backdrop-filter: blur(2px) brightness(1.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       text-align: center;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
     }
-
-    .card {
-      max-width: 700px;
-      padding: 30px 40px;
-      animation: fadeIn 2s ease;
-      background: rgba(255, 240, 245, 0.2);
-      border-radius: 70px 70px 40px 40px;
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 220, 240, 0.6);
-      box-shadow: 0 20px 40px rgba(200, 100, 130, 0.3), 0 0 0 3px rgba(255, 200, 220, 0.3) inset;
-    }
-
     h1 {
-      font-size: 2.6rem;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-      background: linear-gradient(135deg, #ffdae5, #fff0f5);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 20px #ffa5b9;
+      font-size: 2.8em;
+      margin-bottom: 10px;
     }
-
-    #text {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      min-height: 150px;
-      transition: opacity 1s ease;
-      color: #fff5f7;
+    h2 {
       font-weight: 300;
-      text-shadow: 0 2px 6px #b2445e;
+      margin-bottom: 30px;
     }
-
-    /* HEARTBEAT */
-    .heartbeat {
-      animation: beat 0.6s ease;
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-
-    @keyframes beat {
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+    .heart {
+      font-size: 3em;
+      animation: pulse 1.5s infinite;
+      margin: 20px 0;
+    }
+    @keyframes pulse {
       0% { transform: scale(1); }
-      30% { transform: scale(1.03); background-color: rgba(255, 200, 220, 0.3); }
-      60% { transform: scale(0.98); }
+      50% { transform: scale(1.2); }
       100% { transform: scale(1); }
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.9;
     }
-
-    /* tambahan love ikon kecil di pojok */
-    .corner-love {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 30;
-      font-size: 2.5rem;
-      opacity: 0.5;
-      filter: drop-shadow(0 0 10px hotpink);
-      animation: wobble 6s infinite;
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #fff;
+      color: #ff5e78;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
     }
-
-    .corner-love.right {
-      left: auto;
-      right: 20px;
-      animation-delay: 1s;
+    button:hover {
+      background: #ff5e78;
+      color: #fff;
     }
-
-    @keyframes wobble {
-      0%,100%{ transform: rotate(0deg); }
-      25%{ transform: rotate(10deg); }
-      75%{ transform: rotate(-10deg); }
-    }
-
-    /* fallback untuk foto — jika foto1.jpg dll tidak ada, tampilkan pesan */
-    .slide {
-      background-color: #ffb7c5; /* warna dasar pink */
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* supaya lebih menarik, kita bisa ganti dengan background pink kalau gambar asli tidak ada */
-    /* tapi tetap prioritaskan gambar */
   </style>
 </head>
 <body>
 
-  <!-- LOVE PINK BACKGROUND UTAMA (full love) -->
-  <div class="love-pink-bg">
-    <div class="love-shower"></div> <!-- partikel love dari svg pattern -->
-  </div>
-
-  <!-- elemen love tambahan -->
-  <div class="corner-love">🌸</div>
-  <div class="corner-love right">💖</div>
-
   <div class="container">
-    <!-- SLIDESHOW (gambar) -->
-    <div class="slideshow">
-      <img src="foto1.jpg" class="slide active" alt="love moment 1" onerror="this.style.backgroundColor='#ffb7c5'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffc0cb%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>❤️ foto1</text></svg>'">
-      <img src="foto2.jpg" class="slide" alt="love moment 2" onerror="this.style.backgroundColor='#ffa5b9'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffa5b9%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>🌸 foto2</text></svg>'">
-      <img src="foto3.jpg" class="slide" alt="love moment 3" onerror="this.style.backgroundColor='#ffb2c0'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ffb2c0%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>💕 foto3</text></svg>'">
-      <img src="foto4.jpg" class="slide" alt="love moment 4" onerror="this.style.backgroundColor='#ff9eb5'; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22><rect width=%22300%22 height=%22200%22 fill=%22%23ff9eb5%22/><text x=%2230%22 y=%22110%22 font-size=%2236%22 fill=%22%23ffffff%22 opacity=%220.8%22>🌷 foto4</text></svg>'">
+    <h1>Andini Kiandika Suci</h1>
+    <h2>You are my favorite kind of forever</h2>
+
+    <div class="card">
+      <div class="heart">❤️</div>
+      <p>
+        If love had a name, I would call it <strong>you</strong>.<br><br>
+        You are not just beautiful to the eyes,<br>
+        but kind to the soul and gentle to the heart.<br><br>
+        Loving you feels calm, safe, and right.<br>
+        In every prayer I whisper,<br>
+        in every future I imagine,<br>
+        there is always you.
+      </p>
+
+      <button onclick="alert('I love you, Andini ❤️')">
+        Click Me 🤍
+      </button>
     </div>
 
-    <!-- OVERLAY TEXT -->
-    <div class="overlay">
-      <div class="card">
-        <h1>Just Stay · 🩷</h1>
-        <div id="text"></div>
-      </div>
+    <div class="footer">
+      Made with love, just for you 💕
     </div>
   </div>
 
-  <script>
-    (function() {
-      const slides = document.querySelectorAll(".slide");
-      const textEl = document.getElementById("text");
-      const card = document.querySelector(".card");
-
-      const loveTexts = [
-        `Halaman ini bukan untuk di‑scroll.<br>` +
-        `Ia untuk dirasakan,<br>` +
-        `seperti debaran pink di hati.`,
-
-        `Some moments<br>` +
-        `don’t need explanations.<br>` +
-        `They just need presence.`,
-
-        `With you,<br>` +
-        `everything feels quieter,<br>` +
-        `softer,<br>` +
-        `real.`,
-
-        `If love had a place,<br>` +
-        `maybe it would look like this.<br><br>` +
-        `And I would stay here.<br>` +
-        `With you. ❤️🌸`
-      ];
-
-      let currentSlide = 0;
-
-      // typeText dengan lebih smooth
-      function typeText(element, fullText, speed = 35) {
-        element.innerHTML = "";
-        element.style.opacity = 1;
-        let i = 0;
-        const typing = setInterval(() => {
-          if (i < fullText.length) {
-            // menggunakan substring agar <br> langsung di-render dengan benar
-            element.innerHTML = fullText.substring(0, i + 1);
-            i++;
-          } else {
-            clearInterval(typing);
-          }
-        }, speed);
-      }
-
-      function startSlideshow() {
-        typeText(textEl, loveTexts[0]);
-
-        setInterval(() => {
-          slides[currentSlide].classList.remove("active");
-          currentSlide = (currentSlide + 1) % slides.length;
-          slides[currentSlide].classList.add("active");
-
-          textEl.style.opacity = 0; // fade out teks
-
-          setTimeout(() => {
-            typeText(textEl, loveTexts[currentSlide]);
-            card.classList.add("heartbeat");
-            setTimeout(() => card.classList.remove("heartbeat"), 600);
-          }, 1000); // tunggu transisi slide
-
-        }, 5500); // ganti setiap 5.5 detik
-      }
-
-      startSlideshow();
-
-      // opsi: jika ingin foto asli tetap bisa diisi, kita tidak menghapus src. 
-      // onerror sudah menyediakan fallback pink + teks.
-    })();
-  </script>
 </body>
 </html>
