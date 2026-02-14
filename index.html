@@ -1,182 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>For Andini ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Be Felt</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  overflow: hidden;
-  color: white;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
+    body {
+      background: #000;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
 
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 25px;
-  padding: 35px;
-  max-width: 720px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-h1 {
-  font-size: 2.6em;
-  margin-bottom: 10px;
-}
+    /* SLIDESHOW */
+    .slideshow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.8;
-}
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
 
-button {
-  margin-top: 25px;
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  font-size: 1em;
-  cursor: pointer;
-  background: white;
-  color: #ff4f81;
-  transition: 0.3s;
-}
+    .slide.active {
+      opacity: 1;
+    }
 
-button:hover {
-  background: #ff4f81;
-  color: white;
-}
+    /* OVERLAY */
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-/* SLIDESHOW */
-.slideshow {
-  margin-top: 25px;
-  width: 100%;
-  height: 320px;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  display: none;
-}
+    .card {
+      max-width: 700px;
+      padding: 30px;
+      animation: fadeIn 2s ease;
+    }
 
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-}
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
 
-.slide.active {
-  opacity: 1;
-}
+    #text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      min-height: 150px;
+      transition: opacity 1s ease;
+    }
 
-/* HEART FALL */
-.heart {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear infinite;
-}
+    /* HEARTBEAT */
+    .heartbeat {
+      animation: beat 0.6s ease;
+    }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-  }
-}
-</style>
+    @keyframes beat {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.03); }
+      60% { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-</audio>
-
-<div class="container">
-  <div class="card">
-    <h1>Andini Kiandika Suci</h1>
-
-    <p id="text">
-      I made this page for one reason only.<br><br>
-      To remind you…<br>
-      that you are deeply loved.
-    </p>
-
-    <!-- SLIDESHOW FOTO -->
-    <div class="slideshow" id="slideshow">
+  <div class="container">
+    <!-- SLIDESHOW -->
+    <div class="slideshow">
       <img src="foto1.jpg" class="slide active">
       <img src="foto2.jpg" class="slide">
       <img src="foto3.jpg" class="slide">
       <img src="foto4.jpg" class="slide">
     </div>
 
-    <button onclick="startLove()">Click Me 🤍</button>
+    <!-- TEXT -->
+    <div class="overlay">
+      <div class="card">
+        <h1>Just Stay</h1>
+        <div id="text"></div>
+      </div>
+    </div>
   </div>
-</div>
 
-<script>
-let currentSlide = 0;
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const textEl = document.getElementById("text");
+    const card = document.querySelector(".card");
 
-function startLove() {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.5;
-  music.play();
+    const loveTexts = [
+      `This page is not meant<br>
+       to be scrolled.<br>
+       It is meant to be felt.`,
 
-  document.getElementById("text").innerHTML = `
-    If love had a home,<br>
-    it would be your heart.<br><br>
+      `Some moments<br>
+       don’t need explanations.<br>
+       They just need presence.`,
 
-    Every picture holds a memory,<br>
-    and every memory leads me back to you.<br><br>
+      `With you,<br>
+       everything feels quieter,<br>
+       softer,<br>
+       real.`,
 
-    I don’t promise perfection,<br>
-    but I promise you—<br>
-    my heart will always choose yours.<br><br>
+      `If love had a place,<br>
+       maybe it would look like this.<br><br>
+       And I would stay here.<br>
+       With you. ❤️`
+    ];
 
-    Happy Valentine’s Day, my love ❤️
-  `;
+    let currentSlide = 0;
 
-  document.getElementById("slideshow").style.display = "block";
-  createHearts();
-  startSlideshow();
-}
+    function typeText(element, text, speed = 40) {
+      element.innerHTML = "";
+      element.style.opacity = 1;
+      let i = 0;
 
-function startSlideshow() {
-  const slides = document.querySelectorAll(".slide");
-  setInterval(() => {
-    slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
-  }, 3500);
-}
+      const typing = setInterval(() => {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, speed);
+    }
 
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
-    document.body.appendChild(heart);
+    function startSlideshow() {
+      typeText(textEl, loveTexts[0]);
 
-    setTimeout(() => heart.remove(), 5000);
-  }, 300);
-}
-</script>
+      setInterval(() => {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+
+        textEl.style.opacity = 0;
+
+        setTimeout(() => {
+          typeText(textEl, loveTexts[currentSlide]);
+          card.classList.add("heartbeat");
+          setTimeout(() => card.classList.remove("heartbeat"), 600);
+        }, 1000);
+
+      }, 5000);
+    }
+
+    startSlideshow();
+  </script>
 
 </body>
 </html>
