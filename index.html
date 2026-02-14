@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Andini ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 35px;
+  max-width: 720px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+h1 {
+  font-size: 2.6em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+button {
+  margin-top: 25px;
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  background: white;
+  color: #ff4f81;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff4f81;
+  color: white;
+}
+
+/* SLIDESHOW */
+.slideshow {
+  margin-top: 25px;
+  width: 100%;
+  height: 320px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  display: none;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* HEART FALL */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <div class="card">
+    <h1>Andini Kiandika Suci</h1>
+
+    <p id="text">
+      I made this page for one reason only.<br><br>
+      To remind you…<br>
+      that you are deeply loved.
+    </p>
+
+    <!-- SLIDESHOW FOTO -->
+    <div class="slideshow" id="slideshow">
+      <img src="foto1.jpg" class="slide active">
+      <img src="foto2.jpg" class="slide">
+      <img src="foto3.jpg" class="slide">
+      <img src="foto4.jpg" class="slide">
+    </div>
+
+    <button onclick="startLove()">Click Me 🤍</button>
+  </div>
+</div>
+
+<script>
+let currentSlide = 0;
+
+function startLove() {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.5;
+  music.play();
+
+  document.getElementById("text").innerHTML = `
+    If love had a home,<br>
+    it would be your heart.<br><br>
+
+    Every picture holds a memory,<br>
+    and every memory leads me back to you.<br><br>
+
+    I don’t promise perfection,<br>
+    but I promise you—<br>
+    my heart will always choose yours.<br><br>
+
+    Happy Valentine’s Day, my love ❤️
+  `;
+
+  document.getElementById("slideshow").style.display = "block";
+  createHearts();
+  startSlideshow();
+}
+
+function startSlideshow() {
+  const slides = document.querySelectorAll(".slide");
+  setInterval(() => {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+  }, 3500);
+}
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
